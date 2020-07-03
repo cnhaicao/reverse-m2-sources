@@ -1,0 +1,9 @@
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: reverse-project
+---
+spring:
+  profiles: local
