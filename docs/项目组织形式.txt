@@ -1,0 +1,26 @@
+项目组织形式
+
+1.第一种形式
+---project (modules在这级 模块parent在这级)
+	|
+	+-project-module-1
+	+-project-module-2
+项目目录结构 可能有多级
+
+2.第二种形式
+
+---project (modules在这级)
+	|
+	+-project-parent （模块parent在这级 继承自project那级pom)
+	+-project-module-1
+	+-project-module-2
+项目目录结构 可能有多级
+
+3.第三种
+--project 只有当前一个模块且是jar
+
+4.第四种
+--project 只有当前一个模块且是pom.xml（可以有parent也可以没有)
+
+
+

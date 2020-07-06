@@ -12,9 +12,9 @@ import java.util.Date;
  * @author guoguoqiang
  * @since 2020年07月03日
  */
-public abstract class BaseTask<T extends TaskContext> implements Task {
+public abstract class BaseTask<T extends TaskContext> implements Task<T> {
 
-    private Chain chain;
+    private Chain chain = new Chain();
 
     @Override
     public void addCommand(Command command) {
@@ -27,6 +27,7 @@ public abstract class BaseTask<T extends TaskContext> implements Task {
      * @return 执行是否成功
      * @throws Exception 执行异常时抛出
      */
+    @Override
     public boolean execute(T context) throws Exception {
         boolean result = false;
         try {
