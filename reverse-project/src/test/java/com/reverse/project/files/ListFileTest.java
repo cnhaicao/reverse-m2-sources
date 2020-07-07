@@ -19,7 +19,7 @@ public class ListFileTest {
 
     @Test
     public void listFile() {
-        File file = new File("/Users/guoguoqiang/gitlab/maven/com/ucarinc/framework/ucarinc-framework-commons-parent/1.0.0-SNAPSHOT");
+        File file = new File("/Users/guoguoqiang/gitlab/");
         File[] fileList = file.listFiles();
         if (fileList == null) {
             return;

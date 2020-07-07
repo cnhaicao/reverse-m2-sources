@@ -7,6 +7,7 @@ package com.reverse.project.constants;
  * @since 2020年07月06日
  */
 public class Constants {
+    public static final String POM_XML = "pom.xml";
     /**
      * pom文件
      */

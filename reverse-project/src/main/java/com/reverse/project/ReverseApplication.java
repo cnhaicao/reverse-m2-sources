@@ -26,7 +26,6 @@ public class ReverseApplication {
         context.setScanDir("/Users/guoguoqiang/gitlab/maven");
         context.setTmpDir("/Users/guoguoqiang/gitlab/maven-tmp");
         reverseSourcesTask.execute(context);
-        context.getMiddle().getSourceList().forEach(s -> log.info("source:" + s));
         log.info("执行成功.");
     }
 

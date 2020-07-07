@@ -9,6 +9,11 @@ import java.io.Serializable;
  *
  * @author guoguoqiang
  * @since 2020年07月06日
+ * 样例路径
+ * /.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/2.1.3.RELEASE/spring-boot-actuator-autoconfigure-2.1.3.RELEASE-sources.jar
+ * groupId: org.springframework.boot
+ * artifactId: spring-boot-actuator-autoconfigure
+ * version: 2.1.3.RELEASE
  */
 @Data
 public class SourceDTO implements Serializable {
@@ -31,8 +36,22 @@ public class SourceDTO implements Serializable {
     private String groupId;
 
     /**
+     * maven artifactId 由文件夹分析出来
+     */
+    private String artifactId;
+
+    /**
      * maven版本号 由文件夹分析出来
      */
     private String version;
 
+    /**
+     * pom.xml路径(绝对路径)
+     */
+    private String pom;
+
+    /**
+     * 源码解压路径
+     */
+    private String sourcesPath;
 }
