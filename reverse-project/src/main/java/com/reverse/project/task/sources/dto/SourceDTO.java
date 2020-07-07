@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 源DTO
+ * 需要逆向的文件源 DTO
  *
  * @author guoguoqiang
  * @since 2020年07月06日

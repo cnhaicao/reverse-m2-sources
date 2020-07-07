@@ -36,16 +36,19 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         File scanFile = new File(context.getScanDir());
         File m2File = new File(context.getM2Dir());
         if (!scanFile.exists() || scanFile.isFile()) {
-            throw new TaskException("scanDir error:" + context.getScanDir());
+            throw new TaskException("scanDir error:" + context.getScanDir() + " must exists.");
         }
         if (!m2File.exists() || m2File.isFile()) {
             throw new TaskException("m2Dir error:" + context.getM2Dir());
         }
         File tmpFile = new File(context.getTmpDir());
-        if (tmpFile.exists()) {
+        boolean mustDelete = tmpFile.exists() && (context.isForceDeleteTmpDir() || tmpFile.isFile());
+        if (mustDelete) {
             FileUtils.forceDelete(tmpFile);
         }
-        FileUtils.forceMkdir(tmpFile);
+        if (!tmpFile.exists()) {
+            FileUtils.forceMkdir(tmpFile);
+        }
         context.setTmpDir(tmpFile.getAbsolutePath());
         context.setScanDir(scanFile.getAbsolutePath());
         context.setM2Dir(m2File.getAbsolutePath());

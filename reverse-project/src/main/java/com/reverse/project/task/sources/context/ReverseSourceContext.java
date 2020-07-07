@@ -1,6 +1,7 @@
 package com.reverse.project.task.sources.context;
 
 import com.reverse.project.base.task.TaskContext;
+import com.reverse.project.task.sources.dto.MiddleDTO;
 import com.reverse.project.task.sources.dto.ReverseSourceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,14 +33,24 @@ public class ReverseSourceContext extends TaskContext {
     private String scanDir;
 
     /**
+     * 是否强制删除临时目录
+     */
+    private boolean forceDeleteTmpDir = false;
+
+    /**
      * 临时目录 用于存放-sources.jar解压文件
      */
     private String tmpDir;
 
-    // -----------------------输出参数-----------------------
+    // -----------------------中间结果-----------------------
+    /**
+     * 中间结果 DTO
+     */
+    MiddleDTO middle;
+
+    // -----------------------输出结果-----------------------
     /**
      * 逆向结果 DTO
      */
     ReverseSourceDTO reverseSource = new ReverseSourceDTO();
-
 }

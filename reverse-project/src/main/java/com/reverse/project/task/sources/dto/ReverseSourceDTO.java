@@ -15,9 +15,5 @@ import java.util.List;
 public class ReverseSourceDTO implements Serializable {
     private static final long serialVersionUID = -4285145518854752278L;
 
-    /**
-     * 需要逆向的文件列表
-     */
-    private List<SourceDTO> sourceList;
 
 }

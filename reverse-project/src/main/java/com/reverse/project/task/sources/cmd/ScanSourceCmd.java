@@ -34,7 +34,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         List<SourceDTO> sources = new ArrayList<>();
         File scanFile = new File(context.getScanDir());
         scan(scanFile, context.getM2Dir(), sources);
-        context.getReverseSource().setSourceList(sources);
+        context.getMiddle().setSourceList(sources);
         return false;
     }
 
@@ -46,7 +46,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (listFile == null || listFile.length == 0) {
             return;
         }
-        // 当前目录文件列表是否在源码目录
+        // 当前目录存在.pom或-sources.jar文件 表明当前目录是源码目录
         boolean isSourcePath = Arrays.stream(listFile).anyMatch(f -> f.isFile() && (f.getName().endsWith(Constants.POM_FIX)
             || f.getName().endsWith(Constants.SOURCES_FIX)));
 
@@ -82,7 +82,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 result.setSource(pomFile.getAbsolutePath());
                 result.setVersion(pomFile.getParentFile().getName());
                 result.setGroupId(getGroupId(pomFile, m2Dir));
-                log.info("cat pom.xml:{}", pom.get().getAbsolutePath());
+                log.info("catch pom.xml:{}", pom.get().getAbsolutePath());
             }
         }
         return result;
