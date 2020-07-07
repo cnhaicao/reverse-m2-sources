@@ -1,7 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
 import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ZipUtil;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
@@ -30,7 +29,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
         List<SourceDTO> sources = context.getMiddle().getSourceList();
         if (CollectionUtil.isEmpty(sources)) {
             log.error("需要逆向的文件列表为空");
-            return false;
+            return true;
         }
         sources.parallelStream().forEach(s -> {
             if (s.getFileType() == FileTypeEnum.FILE_TYPE_SOURCES.getCode()) {
@@ -38,7 +37,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 String targetDir = context.getTmpDir() + File.separator + s.getGroupId() + File.separator
                     + s.getVersion() + File.separator + s.getArtifactId() + File.separator + file.getName();
                 File target = new File(targetDir);
-                if (!target.exists()) {
+                if (!target.exists() && file.length() > 0) {
                     try {
                         ZipUtil.unzip(file, target);
                     } catch (Exception e) {

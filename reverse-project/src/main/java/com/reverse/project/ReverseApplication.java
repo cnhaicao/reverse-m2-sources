@@ -3,6 +3,7 @@ package com.reverse.project;
 import com.reverse.project.task.sources.ReverseSourcesTask;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -26,7 +27,7 @@ public class ReverseApplication {
         context.setScanDir("/Users/guoguoqiang/gitlab/maven");
         context.setTmpDir("/Users/guoguoqiang/gitlab/maven-tmp");
         reverseSourcesTask.execute(context);
-        log.info("执行成功.");
+        log.info("执行成功，耗时:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
     }
 
 }

@@ -22,4 +22,10 @@ public class Constants {
      * lib包后缀.jar
      */
     public static final String JAR_FIX = ".jar";
+
+    /**
+     * maven pom.xml变量符
+     */
+    public static final String POM_VAR_SYNBOL = "$";
+
 }

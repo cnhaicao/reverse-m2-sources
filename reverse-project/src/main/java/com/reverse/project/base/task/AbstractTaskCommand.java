@@ -28,7 +28,7 @@ public abstract class AbstractTaskCommand<T extends TaskContext> implements Comm
     /**
      * 具体命令执行业务 由子类实现
      * @param context context
-     * @return 执行是否成功
+     * @return 处理是否完成 true已完成(结束职责链)
      * @throws Exception 业务异常时抛出
      */
     public abstract boolean exec(T context) throws Exception;

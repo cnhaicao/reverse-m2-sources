@@ -14,8 +14,10 @@ import java.util.List;
 @Data
 public class MiddleDTO implements Serializable {
     private static final long serialVersionUID = -7004368417400992006L;
+
     /**
-     * 需要逆向的文件列表
+     * 需要逆向的文件列表(包括pom.xml及source.jar)
      */
     private List<SourceDTO> sourceList;
+
 }
