@@ -16,4 +16,9 @@ public class Constants {
      * 源码包后缀
      */
     public static final String SOURCES_FIX = "-sources.jar";
+
+    /**
+     * lib包后缀.jar
+     */
+    public static final String JAR_FIX = ".jar";
 }

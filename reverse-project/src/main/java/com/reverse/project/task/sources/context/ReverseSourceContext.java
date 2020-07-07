@@ -46,7 +46,7 @@ public class ReverseSourceContext extends TaskContext {
     /**
      * 中间结果 DTO
      */
-    MiddleDTO middle;
+    MiddleDTO middle = new MiddleDTO();
 
     // -----------------------输出结果-----------------------
     /**

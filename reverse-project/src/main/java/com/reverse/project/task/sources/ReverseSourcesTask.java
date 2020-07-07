@@ -4,6 +4,7 @@ import com.reverse.project.base.task.BaseTask;
 import com.reverse.project.base.task.annotation.TaskChain;
 import com.reverse.project.task.sources.cmd.InitCmd;
 import com.reverse.project.task.sources.cmd.ScanSourceCmd;
+import com.reverse.project.task.sources.cmd.UnzipAnalysisPomCmd;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 @TaskChain(types = {
     InitCmd.class,
     ScanSourceCmd.class,
+    UnzipAnalysisPomCmd.class
 })
 public class ReverseSourcesTask<ReverseSourceContext> extends BaseTask {
 

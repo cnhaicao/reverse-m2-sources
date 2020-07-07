@@ -1,6 +1,5 @@
 package com.reverse.project.task.sources.cmd;
 
-import com.google.common.base.Splitter;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
 import com.reverse.project.constants.FileTypeEnum;
@@ -15,8 +14,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  * 扫描需要逆向的pom.xml 及源码包(-sources.jar)
@@ -46,12 +43,14 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (listFile == null || listFile.length == 0) {
             return;
         }
-        // 当前目录存在.pom或-sources.jar文件 表明当前目录是源码目录
-        boolean isSourcePath = Arrays.stream(listFile).anyMatch(f -> f.isFile() && (f.getName().endsWith(Constants.POM_FIX)
-            || f.getName().endsWith(Constants.SOURCES_FIX)));
+        // 源码目录的判断条件为 存在后缀为-sources.jar的文件或（存在.pom且不存在.jar)
+        boolean matchSources = Arrays.stream(listFile).anyMatch(f -> f.isFile() && f.getName().endsWith(Constants.SOURCES_FIX));
+        boolean noneMatchJar = Arrays.stream(listFile).noneMatch(f -> f.getName().endsWith(Constants.JAR_FIX));
+        boolean matchPom = Arrays.stream(listFile).anyMatch(f -> f.isFile() && f.getName().endsWith(Constants.POM_FIX));
 
         // 当前在源码目录
-        if (isSourcePath) {
+        boolean inSourceDir = matchSources || (matchPom && noneMatchJar);
+        if (inSourceDir) {
             SourceDTO source = analysisSource(listFile, m2Dir);
             sources.add(source);
             return;

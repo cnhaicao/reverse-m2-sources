@@ -3,7 +3,6 @@ package com.reverse.project.task.sources.dto;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * reverse source dto
