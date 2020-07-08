@@ -3,7 +3,7 @@ package com.reverse.project.utils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.reverse.project.constants.Constants;
-import com.reverse.project.task.sources.dto.Pom;
+import com.reverse.project.task.sources.vo.Pom;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,6 +1,6 @@
 package com.reverse.project.xml;
 
-import com.reverse.project.task.sources.dto.Pom;
+import com.reverse.project.task.sources.vo.Pom;
 import com.reverse.project.utils.PomUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.jsoup.Jsoup;

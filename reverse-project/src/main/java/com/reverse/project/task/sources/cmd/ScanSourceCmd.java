@@ -4,7 +4,7 @@ import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
 import com.reverse.project.constants.FileTypeEnum;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
-import com.reverse.project.task.sources.dto.SourceDTO;
+import com.reverse.project.task.sources.vo.SourceVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -28,14 +28,14 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
         log.info("context:" + context.toString());
-        List<SourceDTO> sources = new ArrayList<>();
+        List<SourceVO> sources = new ArrayList<>();
         File scanFile = new File(context.getScanDir());
         scan(scanFile, context.getM2Dir(), sources);
         context.getMiddle().setSourceList(sources);
         return false;
     }
 
-    private void scan(File file, String m2Dir, List<SourceDTO> sources) {
+    private void scan(File file, String m2Dir, List<SourceVO> sources) {
         if (!file.exists() || file.isFile()) {
             return;
         }
@@ -48,7 +48,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (s.isPresent()) {
             log.info("catch sources.jar:{}", s.get().getAbsolutePath());
             File sourceFile = s.get();
-            SourceDTO source = buildSource(sourceFile, m2Dir, FileTypeEnum.FILE_TYPE_SOURCES.getCode());
+            SourceVO source = buildSource(sourceFile, m2Dir, FileTypeEnum.FILE_TYPE_SOURCES.getCode());
             sources.add(source);
             return;
         }
@@ -59,8 +59,8 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (pom.isPresent()) {
             log.info("catch pom.xml:{}", pom.get().getAbsolutePath());
             File pomFile = pom.get();
-            SourceDTO source = buildSource(pomFile, m2Dir, FileTypeEnum.FILE_TYPE_POM.getCode());
-            source.setPom(source.getSource());
+            SourceVO source = buildSource(pomFile, m2Dir, FileTypeEnum.FILE_TYPE_POM.getCode());
+            source.setPomPath(source.getSource());
             sources.add(source);
             return;
         }
@@ -72,8 +72,8 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         });
     }
 
-    private SourceDTO buildSource(File file, String m2Dir, int fileType) {
-        SourceDTO result = new SourceDTO();
+    private SourceVO buildSource(File file, String m2Dir, int fileType) {
+        SourceVO result = new SourceVO();
         result.setFileType(fileType);
         result.setSource(file.getAbsolutePath());
         result.setVersion(file.getParentFile().getName());

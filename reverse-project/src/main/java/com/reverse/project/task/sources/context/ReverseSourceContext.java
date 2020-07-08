@@ -1,8 +1,8 @@
 package com.reverse.project.task.sources.context;
 
 import com.reverse.project.base.task.TaskContext;
-import com.reverse.project.task.sources.dto.MiddleDTO;
-import com.reverse.project.task.sources.dto.ReverseSourceDTO;
+import com.reverse.project.task.sources.vo.MiddleVO;
+import com.reverse.project.task.sources.vo.OutputVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,11 +46,11 @@ public class ReverseSourceContext extends TaskContext {
     /**
      * 中间结果 DTO
      */
-    MiddleDTO middle = new MiddleDTO();
+    MiddleVO middle = new MiddleVO();
 
     // -----------------------输出结果-----------------------
     /**
      * 逆向结果 DTO
      */
-    ReverseSourceDTO reverseSource = new ReverseSourceDTO();
+    OutputVO reverseSource = new OutputVO();
 }

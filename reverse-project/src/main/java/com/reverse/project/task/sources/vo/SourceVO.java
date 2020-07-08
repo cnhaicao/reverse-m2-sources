@@ -1,4 +1,4 @@
-package com.reverse.project.task.sources.dto;
+package com.reverse.project.task.sources.vo;
 
 import lombok.Data;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * version: 2.1.3.RELEASE
  */
 @Data
-public class SourceDTO implements Serializable {
+public class SourceVO implements Serializable {
 
     private static final long serialVersionUID = 5576780709198641376L;
 

@@ -1,4 +1,4 @@
-package com.reverse.project.task.sources.dto;
+package com.reverse.project.task.sources.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

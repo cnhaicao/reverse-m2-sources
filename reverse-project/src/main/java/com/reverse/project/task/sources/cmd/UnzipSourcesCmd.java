@@ -6,7 +6,7 @@ import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
 import com.reverse.project.constants.FileTypeEnum;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
-import com.reverse.project.task.sources.dto.SourceDTO;
+import com.reverse.project.task.sources.vo.SourceVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +26,7 @@ import java.util.Optional;
 public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
-        List<SourceDTO> sources = context.getMiddle().getSourceList();
+        List<SourceVO> sources = context.getMiddle().getSourceList();
         if (CollectionUtil.isEmpty(sources)) {
             log.error("需要逆向的文件列表为空");
             return true;
@@ -37,6 +37,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 String targetDir = context.getTmpDir() + File.separator + s.getGroupId() + File.separator
                     + s.getVersion() + File.separator + s.getArtifactId() + File.separator + file.getName();
                 File target = new File(targetDir);
+                // 这时只判断文件有没有存在 可以考虑增加CRC校验
                 if (!target.exists() && file.length() > 0) {
                     try {
                         ZipUtil.unzip(file, target);

@@ -3,7 +3,7 @@ package com.reverse.project.task.sources.cmd;
 import cn.hutool.core.collection.CollectionUtil;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
-import com.reverse.project.task.sources.dto.SourceDTO;
+import com.reverse.project.task.sources.vo.SourceVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class CollectSourcesCmd extends AbstractTaskCommand<ReverseSourceContext>
 
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
-        List<SourceDTO> sources = context.getMiddle().getSourceList();
+        List<SourceVO> sources = context.getMiddle().getSourceList();
         if (CollectionUtil.isEmpty(sources)) {
             log.error("需要逆向的文件列表为空");
             return true;
