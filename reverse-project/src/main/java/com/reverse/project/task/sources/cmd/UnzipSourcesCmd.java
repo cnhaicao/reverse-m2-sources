@@ -46,7 +46,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 }
                 if (target.exists() && target.isDirectory()) {
                     s.setSourcesPath(target.getAbsolutePath());
-                    s.setPom(findPom(target));
+                    s.setPomPath(findPom(target));
                 }
             }
         });

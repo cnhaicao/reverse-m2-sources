@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * pom analysis util
+ * pomPath analysis util
  * base on jsoup
  * @author guoguoqiang
  * @since 2020年07月07日
@@ -25,7 +25,7 @@ public class PomUtils {
 
     /**
      * 解析pom.xml并返回解析结果对象
-     * @param source pom.xml绝对路径
+     * @param source pomPath.xml绝对路径
      * @param pom pom对象解析后将内容填入pom对象中
      * @return Pom
      * @throws IOException 文件解析异常

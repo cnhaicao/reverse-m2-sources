@@ -46,6 +46,7 @@ public class Pom implements Serializable {
 
     /**
      * maven relativePath 由pom.xml解析(可能暂时没用)
+     * 父pom才有该属性
      */
     private String relativePath;
 

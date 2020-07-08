@@ -12,7 +12,7 @@ import java.io.File;
 
 /**
  * 初始化
- * 检查输入参数
+ * 检查输入参数并初始化
  * 强制删除及建立临时目录
  *
  * @author guoguoqiang

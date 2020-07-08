@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 /**
- * find pom.xml
+ * find pomPath.xml
  *
  * @author guoguoqiang
  * @since 2020年07月07日
@@ -18,10 +18,10 @@ import java.util.Optional;
 public class FindPomTest {
     @Test
     public void test() {
-        String source = "/Users/guoguoqiang/.m2/";
+        String source = "/Users/guoguoqiang/gitlab/maven-tmp";
         File pomFile = new File(source);
         String pomXml = findPom(pomFile);
-        log.info("pom xml:{}", pomXml);
+        log.info("pomPath xml:{}", pomXml);
     }
 
     private String findPom(File target) {

@@ -28,9 +28,9 @@ public class ListFileTest {
         if (source.isPresent()) {
             log.info("catch sources.jar:{}", source.get().getAbsolutePath());
         } else {
-            Optional<File> pom = Arrays.stream(fileList).filter(f -> f.getName().endsWith(".pom")).max(Comparator.naturalOrder());
+            Optional<File> pom = Arrays.stream(fileList).filter(f -> f.getName().endsWith(".pomPath")).max(Comparator.naturalOrder());
             if (pom.isPresent()) {
-                log.info("cat pom.xml:{}", pom.get().getAbsolutePath());
+                log.info("cat pomPath.xml:{}", pom.get().getAbsolutePath());
             }
         }
     }

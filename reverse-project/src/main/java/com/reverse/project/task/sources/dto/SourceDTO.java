@@ -48,10 +48,15 @@ public class SourceDTO implements Serializable {
     /**
      * pom.xml路径(绝对路径)
      */
-    private String pom;
+    private String pomPath;
 
     /**
      * 源码解压路径
      */
     private String sourcesPath;
+
+    /**
+     * pom解析结果对象
+     */
+    private Pom pom;
 }
