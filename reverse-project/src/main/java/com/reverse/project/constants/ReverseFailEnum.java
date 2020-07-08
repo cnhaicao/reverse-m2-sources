@@ -1,26 +1,27 @@
 package com.reverse.project.constants;
 
 /**
- * 源码类型
+ * 逆向失败原因
  *
  * @author guoguoqiang
  * @since 2020年07月06日
  */
 @SuppressWarnings("unused")
-public enum FileTypeEnum {
+public enum ReverseFailEnum {
     /**
-     * pom.xml
+     * pom.xml缺失或解析异常
      */
-    FILE_TYPE_POM(1, "POM"),
-    /**
-     * -sources.jar
-     */
-    FILE_TYPE_SOURCES(2, "SOURCES");
+    FAIL_NO_SUPPORT(0, "不支持的packaging方式"),
+    FAIL_POM(1, "pom.xml解析异常"),
+    FAIL_NOT_EXISTS_PARENT_POM(2, "父pom解析异常"),
+    FAIL_MODULE_MISS(3, "module缺失");
+
+
 
     private int code;
     private String name;
 
-    FileTypeEnum(int code, String name) {
+    ReverseFailEnum(int code, String name) {
         this.code = code;
         this.name = name;
     }

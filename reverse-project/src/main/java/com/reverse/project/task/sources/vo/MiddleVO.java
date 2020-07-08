@@ -23,6 +23,8 @@ public class MiddleVO implements Serializable {
 
     /**
      * 将需要逆向的文件列表收集成map形式 方便处理
+     * key = groupId$artifactId$version 详见 {@link com.reverse.project.utils.MapKeyUtil}
+     * value = SourceVO
      */
     private Map<String, SourceVO> sourceMap;
 }

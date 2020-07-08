@@ -1,24 +1,19 @@
 package com.reverse.project.task.sources.vo;
 
+import com.reverse.project.constants.ReverseFailEnum;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * 需要逆向的文件源 DTO
+ * 异常源码文件源
  *
  * @author guoguoqiang
- * @since 2020年07月06日
- * 样例路径
- * /.m2/repository/org/springframework/boot/spring-boot-actuator-autoconfigure/2.1.3.RELEASE/spring-boot-actuator-autoconfigure-2.1.3.RELEASE-sources.jar
- * groupId: org.springframework.boot
- * artifactId: spring-boot-actuator-autoconfigure
- * version: 2.1.3.RELEASE
+ * @since 2020年07月08日
  */
 @Data
-public class SourceVO implements Serializable {
-
-    private static final long serialVersionUID = 5576780709198641376L;
+public class ErrorSourceVO implements Serializable {
+    private static final long serialVersionUID = 2300808942013695066L;
 
     /**
      * 文件类型 {@link com.reverse.project.constants.FileTypeEnum} 由文件夹分析出来
@@ -51,12 +46,7 @@ public class SourceVO implements Serializable {
     private String pomPath;
 
     /**
-     * 源码解压路径 由文件夹分析出来
+     * 异常原因
      */
-    private String sourcesPath;
-
-    /**
-     * pom解析结果对象
-     */
-    private Pom pom;
+    private ReverseFailEnum failEnum;
 }

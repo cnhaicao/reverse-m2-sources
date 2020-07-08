@@ -3,6 +3,7 @@ package com.reverse.project.utils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.reverse.project.constants.Constants;
+import com.reverse.project.constants.MavenPackagingEnum;
 import com.reverse.project.task.sources.vo.Pom;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
@@ -31,8 +32,8 @@ public class PomUtils {
      * @throws IOException 文件解析异常
      */
     public static Pom analysisPom(String source, Pom pom) throws IOException {
-        if (pom == null) {
-            throw new IllegalArgumentException("pom不能为null");
+        if (pom == null || source == null) {
+            throw new IllegalArgumentException("pom或pom路径为空");
         }
         Document document = Jsoup.parse(new File(source), "utf-8");
         Elements parent = document.select("project>parent");
@@ -53,6 +54,13 @@ public class PomUtils {
         pom.setPackaging(getValueFromElements(packaging));
         Elements name = document.select("project>name");
         pom.setName(getValueFromElements(name));
+        if (pom.getName() != null && pom.getName().contains(Constants.POM_VAR_SYNBOL)) {
+            pom.setName(pom.getArtifactId());
+        }
+        // maven 打包方式默认为jar
+        if (StringUtils.isBlank(pom.getPackaging())) {
+            pom.setPackaging(MavenPackagingEnum.JAR.getCode());
+        }
         Elements description = document.select("project>description");
         pom.setDescription(getValueFromElements(description));
         pom.setModules(analysisModules(document));

@@ -3,6 +3,7 @@ package com.reverse.project.task.sources.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * reverse source dto
@@ -14,5 +15,6 @@ import java.io.Serializable;
 public class OutputVO implements Serializable {
     private static final long serialVersionUID = -4285145518854752278L;
 
+    private List<ErrorSourceVO> errorSources;
 
 }

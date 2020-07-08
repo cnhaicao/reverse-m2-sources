@@ -40,4 +40,17 @@ public enum MavenPackagingEnum {
     public void setName(String name) {
         this.name = name;
     }
+
+    public static boolean isValidPackagingEnum(String packaging) {
+        if (packaging == null) {
+            return false;
+        }
+        MavenPackagingEnum[] enums = MavenPackagingEnum.values();
+        for (MavenPackagingEnum e: enums) {
+            if (e.getCode().equals(packaging.trim())) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

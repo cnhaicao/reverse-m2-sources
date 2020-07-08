@@ -42,6 +42,11 @@ public class ReverseSourceContext extends TaskContext {
      */
     private String tmpDir;
 
+    /**
+     * 源码输出目录
+     */
+    private String outputDir;
+
     // -----------------------中间结果-----------------------
     /**
      * 中间结果 DTO
@@ -52,5 +57,5 @@ public class ReverseSourceContext extends TaskContext {
     /**
      * 逆向结果 DTO
      */
-    OutputVO reverseSource = new OutputVO();
+    OutputVO output = new OutputVO();
 }

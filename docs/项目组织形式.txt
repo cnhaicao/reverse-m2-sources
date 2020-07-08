@@ -1,4 +1,4 @@
-项目组织形式
+一、项目组织形式
 
 1.第一种形式
 ---project (modules在这级 模块parent在这级)
@@ -23,4 +23,12 @@
 --project 只有当前一个模块且是pom.xml（可以有parent也可以没有)
 
 
+二、分析
+1.自底向上分析
+逐个source分析：
+A.sources包
+1) 无parent 待处理看是否被其它项目包含
+2）有parent 比较parent.version=current.version?
+B.pom包
 
+2.自顶向下分析

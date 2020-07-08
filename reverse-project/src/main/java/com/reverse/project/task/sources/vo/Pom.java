@@ -66,7 +66,7 @@ public class Pom implements Serializable {
     private List<String> modules;
 
     /**
-     * 父pom
+     * 父pom 由pom.xml解析
      */
     private Pom parent;
 
