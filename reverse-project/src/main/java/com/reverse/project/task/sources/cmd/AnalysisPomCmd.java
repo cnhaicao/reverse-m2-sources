@@ -3,10 +3,8 @@ package com.reverse.project.task.sources.cmd;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.reverse.project.base.task.AbstractTaskCommand;
-import com.reverse.project.constants.MavenPackagingEnum;
 import com.reverse.project.constants.ReverseFailEnum;
 import com.reverse.project.exception.ParentPomException;
-import com.reverse.project.exception.UnsupportPomPackagingException;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
 import com.reverse.project.task.sources.vo.ErrorSourceVO;
 import com.reverse.project.task.sources.vo.Pom;
@@ -31,6 +29,7 @@ import java.util.Map;
 @Component
 public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
 
+    @SuppressWarnings("Duplicates")
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
         Map<String, SourceVO> sourceMap = context.getMiddle().getSourceMap();
@@ -44,9 +43,6 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
             try {
                 Pom pom = JsonCloneUtils.cloneFrom(v, Pom.class);
                 PomUtils.analysisPom(v.getPomPath(), pom);
-                if (!MavenPackagingEnum.isValidPackagingEnum(pom.getPackaging())) {
-                    throw new UnsupportPomPackagingException("不支持的packaging:" + pom.getPackaging());
-                }
                 analysisParentPom(pom, sourceMap);
                 v.setPom(pom);
                 pomSuccessMap.put(k, v);
@@ -57,8 +53,6 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 }
                 if (e instanceof ParentPomException) {
                     errorSource.setFailEnum(ReverseFailEnum.FAIL_NOT_EXISTS_PARENT_POM);
-                } else if (e instanceof UnsupportPomPackagingException) {
-                    errorSource.setFailEnum(ReverseFailEnum.FAIL_NO_SUPPORT);
                 } else {
                     errorSource.setFailEnum(ReverseFailEnum.FAIL_POM);
                 }
