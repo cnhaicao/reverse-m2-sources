@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.cloud</groupId>
+    <artifactId>cloud-build</artifactId>
+    <version>${cloud.version}</version>
+    <name>cloud-build</name>
+    <description>cloud project</description>
+    <packaging>pom</packaging>
+
+    <properties>
+        <cloud.version>1.0.0-SNAPSHOT</cloud.version>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>pack-1</id>
+            <modules>
+                <module>cloud-parent</module>
+                <module>cloud-api</module>
+                <module>cloud-repository</module>
+                <module>cloud-service</module>
+                <module>cloud-web</module>
+                <module>cloud-dubbo-provider</module>
+                <module>cloud-dubbo-consumer</module>
+                <module>cloud-gateway</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>pack-2</id>
+            <modules>
+                <module>cloud-service</module>
+                <module>cloud-web</module>
+                <module>cloud-dubbo-provider</module>
+                <module>cloud-dubbo-consumer</module>
+                <module>cloud-gateway</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>pack-all</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>cloud-parent</module>
+                <module>cloud-api</module>
+                <module>cloud-repository</module>
+                <module>cloud-service</module>
+                <module>cloud-web</module>
+                <module>cloud-dubbo-provider</module>
+                <module>cloud-dubbo-consumer</module>
+                <module>cloud-gateway</module>
+                <module>cloud-db</module>
+                <module>cloud-server</module>
+            </modules>
+        </profile>
+    </profiles>
+</project>

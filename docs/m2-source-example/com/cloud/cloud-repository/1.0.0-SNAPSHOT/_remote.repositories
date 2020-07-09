@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 09 11:11:36 CST 2020
+cloud-repository-1.0.0-SNAPSHOT.jar>=
+cloud-repository-1.0.0-SNAPSHOT-sources.jar>=
+cloud-repository-1.0.0-SNAPSHOT.pom>=

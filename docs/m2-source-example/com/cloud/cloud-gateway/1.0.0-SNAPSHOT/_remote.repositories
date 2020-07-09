@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 09 11:11:45 CST 2020
+cloud-gateway-1.0.0-SNAPSHOT.jar>=
+cloud-gateway-1.0.0-SNAPSHOT.pom>=
+cloud-gateway-1.0.0-SNAPSHOT-sources.jar>=

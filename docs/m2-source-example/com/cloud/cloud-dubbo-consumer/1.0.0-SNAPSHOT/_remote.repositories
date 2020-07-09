@@ -1,0 +1,5 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Thu Jul 09 11:11:43 CST 2020
+cloud-dubbo-consumer-1.0.0-SNAPSHOT.jar>=
+cloud-dubbo-consumer-1.0.0-SNAPSHOT-sources.jar>=
+cloud-dubbo-consumer-1.0.0-SNAPSHOT.pom>=
