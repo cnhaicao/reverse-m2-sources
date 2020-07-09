@@ -23,12 +23,20 @@
 --project 只有当前一个模块且是pom.xml（可以有parent也可以没有)
 
 
-二、分析
-1.自底向上分析
-逐个source分析：
-A.sources包
-1) 无parent 待处理看是否被其它项目包含
-2）有parent 比较parent.version=current.version?
-B.pom包
+二、源码模块分析
 
-2.自顶向下分析
+每个value是一个独立的项目，具有以下特征：
+1.每个根模块均没有父模块 且没被其它模块包含（不是其它模块的子模块）
+2.可以有子模块（packaging一定为pom)也可以没有子模块
+
+无效的项目源码包：
+1.packaging为jar:
+1) 有父pom（且版本号和当前模块版本号相同），且没被包含（不是其它模块的子模块)即Module的parent为空
+
+2.packaging为pom:
+1) 有父pom（且版本号和当前模块版本号相同），且没被包含（不是其它模块的子模块)即Module的parent为空
+2）有子模块，且存在某个子模块match=false
+
+
+三、源码模块分析实现过程
+Map<String, SourceVO>经过一次扫描组织成Map<String, ModuleVO>

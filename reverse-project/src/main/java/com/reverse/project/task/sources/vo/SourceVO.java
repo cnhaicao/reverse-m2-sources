@@ -59,4 +59,18 @@ public class SourceVO implements Serializable {
      * pom解析结果对象
      */
     private Pom pom;
+
+    /**
+     * 当前源码包是否有父pom(且当前版本号=父pom版本号)
+     * @return true有 false没有
+     */
+    public boolean hasParentPom() {
+        if (pom == null) {
+            return false;
+        }
+        if (pom.getParent() == null) {
+            return false;
+        }
+        return pom.getVersion().equals(pom.getParent().getVersion());
+    }
 }

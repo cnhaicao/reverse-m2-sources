@@ -17,7 +17,7 @@ import java.util.Optional;
 
 /**
  * 扫描需要逆向的pom.xml 及源码包(-sources.jar)
- *
+ * 输出middle.sourceList
  * @author guoguoqiang
  * @since 2020年07月06日
  */

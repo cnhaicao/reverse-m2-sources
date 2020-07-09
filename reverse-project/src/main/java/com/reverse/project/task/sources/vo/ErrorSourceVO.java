@@ -49,4 +49,9 @@ public class ErrorSourceVO implements Serializable {
      * 异常原因
      */
     private ReverseFailEnum failEnum;
+
+    /**
+     * 异常原因 描述
+     */
+    private String reverseFailDescription;
 }

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 /**
  * 将pom.xml及sources进行收集
  * 以便下步进行pom.xml分析及源码完整性匹配
+ * 输出middle.sourceMap
  * @author guoguoqiang
  * @since 2020年07月07日
  */

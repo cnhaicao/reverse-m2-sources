@@ -66,7 +66,7 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
 
     /**
      * 递归解析parent pom.xml
-     *
+     * 可尽早知道是否有缺失的父pom
      * @param pom       pom
      * @param sourceMap sourceMap
      * @throws ParentPomException 父pom不存在或解析异常时抛出
