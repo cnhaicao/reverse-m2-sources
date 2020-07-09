@@ -46,7 +46,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         // 源码目录的判断条件为 存在后缀为-sources.jar的文件或（存在.pom且不存在.jar)
         Optional<File> s = Arrays.stream(listFile).filter(f -> f.getName().endsWith(Constants.SOURCES_FIX)).max(Comparator.naturalOrder());
         if (s.isPresent()) {
-            log.info("catch sources.jar:{}", s.get().getAbsolutePath());
+            log.debug("catch sources.jar:{}", s.get().getAbsolutePath());
             File sourceFile = s.get();
             SourceVO source = buildSource(sourceFile, m2Dir, FileTypeEnum.FILE_TYPE_SOURCES.getCode());
             sources.add(source);
@@ -57,7 +57,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
             .max(Comparator.naturalOrder());
 
         if (pom.isPresent()) {
-            log.info("catch pom.xml:{}", pom.get().getAbsolutePath());
+            log.debug("catch pom.xml:{}", pom.get().getAbsolutePath());
             File pomFile = pom.get();
             SourceVO source = buildSource(pomFile, m2Dir, FileTypeEnum.FILE_TYPE_POM.getCode());
             source.setPomPath(source.getSource());

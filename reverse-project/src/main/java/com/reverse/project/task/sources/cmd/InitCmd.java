@@ -49,9 +49,14 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (!tmpFile.exists()) {
             FileUtils.forceMkdir(tmpFile);
         }
+        File outputFile = new File(context.getOutputDir());
+        if (!outputFile.exists()) {
+            FileUtils.forceMkdir(outputFile);
+        }
         context.setTmpDir(tmpFile.getAbsolutePath());
         context.setScanDir(scanFile.getAbsolutePath());
         context.setM2Dir(m2File.getAbsolutePath());
+        context.setOutputDir(outputFile.getAbsolutePath());
         return false;
     }
 

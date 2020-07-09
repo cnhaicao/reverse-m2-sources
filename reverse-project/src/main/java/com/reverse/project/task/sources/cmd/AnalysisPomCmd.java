@@ -78,7 +78,7 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
         Pom parent = pom.getParent();
         String parentKey = MapKeyUtil.mapKey(parent.getGroupId(), parent.getArtifactId(), parent.getVersion());
         if (!pom.getVersion().equals(parent.getVersion())) {
-            log.info("pom version:{}不同于parent version:{},不解析 parent.", MapKeyUtil.mapKey(pom.getGroupId(), pom.getArtifactId(), pom.getVersion()), parentKey);
+            log.debug("pom version:{}不同于parent version:{},不解析 parent.", MapKeyUtil.mapKey(pom.getGroupId(), pom.getArtifactId(), pom.getVersion()), parentKey);
             return;
         }
         try {

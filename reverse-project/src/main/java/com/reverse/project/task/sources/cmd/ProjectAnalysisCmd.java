@@ -40,9 +40,6 @@ public class ProjectAnalysisCmd extends AbstractTaskCommand<ReverseSourceContext
             }
         });
         context.getMiddle().setModuleMap(moduleMap);
-        moduleMap.values().parallelStream().forEach(m -> {
-            log.info(m.getArtifactId() + " check:" + ModuleVO.checkAllModulesMatch(m));
-        });
 
         return false;
     }

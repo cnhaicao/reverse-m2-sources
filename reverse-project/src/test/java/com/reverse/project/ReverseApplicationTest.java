@@ -25,6 +25,7 @@ public class ReverseApplicationTest {
         context.setM2Dir("/Users/guoguoqiang/.m2/repository");
         context.setScanDir("/Users/guoguoqiang/.m2/repository/org/springframework");
         context.setTmpDir("/Users/guoguoqiang/.m2/repository-tmp");
+        context.setOutputDir("/Users/guoguoqiang/.m2/repository-generate");
         reverseSourcesTask.execute(context);
         log.info("执行成功，耗时:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
     }

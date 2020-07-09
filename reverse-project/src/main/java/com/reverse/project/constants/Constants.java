@@ -1,5 +1,7 @@
 package com.reverse.project.constants;
 
+import java.io.File;
+
 /**
  * 常量定义类
  *
@@ -24,8 +26,23 @@ public class Constants {
     public static final String JAR_FIX = ".jar";
 
     /**
+     * java 源码后缀
+     */
+    public static final String JAVA_FIX = ".java";
+
+    /**
      * maven pom.xml变量符
      */
     public static final String POM_VAR_SYNBOL = "$";
+
+    /**
+     * 源码生成的src目录
+     */
+    public static final String SRC_DIRECTORY = "src" + File.separator + "main" + File.separator + "java";
+
+    /**
+     * 源码生成的resources
+     */
+    public static final String RESOURCES_DIRECTORY = "src" + File.separator + "main" + File.separator + "resources";
 
 }
