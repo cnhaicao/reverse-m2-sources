@@ -9,6 +9,7 @@ import com.reverse.project.constants.ReverseFailEnum;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
 import com.reverse.project.task.sources.vo.ErrorSourceVO;
 import com.reverse.project.task.sources.vo.ModuleVO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -120,7 +121,8 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
     @Data
     @Builder
     @NoArgsConstructor
-    private class ErrorReport {
+    @AllArgsConstructor
+    private static class ErrorReport {
         /**
          * 源码包类型 source.jar/pom
          */
