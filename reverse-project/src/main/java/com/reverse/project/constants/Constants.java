@@ -50,4 +50,14 @@ public class Constants {
      */
     public static final String EXPORT_EXCEL_FIX = ".xlsx";
 
+    /**
+     * 源码目录
+     */
+    public static final String FOLDER_SOURCES = "sources";
+
+    /**
+     * pom目录
+     */
+    public static final String FOLDER_POM = "pom";
+
 }

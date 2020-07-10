@@ -34,14 +34,20 @@ import java.util.Map;
 public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
-        String outputDir = context.getOutputDir();
+        final String outputDir = context.getOutputDir();
         List<ModuleVO> successSources = Lists.newArrayList();
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         Map<String, ModuleVO> moduleMap = context.getMiddle().getModuleMap();
         moduleMap.forEach((k, m) -> {
             log.info("需要生成的源代码:{},版本号:{}", m.getArtifactId(), m.getVersion());
             try {
-                generateSource(m, outputDir);
+                StringBuilder outputDirBase = new StringBuilder(outputDir);
+                if (m.getSourcesPath() != null && isJavaFolder(new File(m.getSourcesPath()))) {
+                    outputDirBase.append(File.separator).append(Constants.FOLDER_SOURCES);
+                } else {
+                    outputDirBase.append(File.separator).append(Constants.FOLDER_POM);
+                }
+                generateSource(m, outputDirBase.toString());
                 successSources.add(m);
             } catch (Exception e) {
                 log.error("源码生成异常:{}，{}", k, e.getMessage(), e);
@@ -72,6 +78,7 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
             FileUtils.forceDelete(file);
             FileUtils.forceMkdir(file);
         }
+        module.setModuleGenerateDir(file.getAbsolutePath());
         FileUtils.copyFile(new File(module.getPomPath()), new File(sb.toString() + File.separator + "pom.xml"));
         if (FileTypeEnum.FILE_TYPE_SOURCES.getCode() == module.getFileType()) {
             mkdirSourceDir(sb.toString());

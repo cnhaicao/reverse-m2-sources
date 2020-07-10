@@ -70,11 +70,8 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
         List<List<String>> successList = Lists.newArrayList();
         successList.add(rowTitle);
         successSources.forEach(m -> {
-            StringBuilder sb = new StringBuilder(outputDir);
-            sb.append(File.separator).append(m.getArtifactId()).append(File.separator).append(m.getVersion());
-            File f = new File(sb.toString());
             List<String> rValue = Lists.newArrayList(m.getArtifactId(), m.getVersion(),
-                m.getGroupId(), f.getAbsolutePath());
+                m.getGroupId(), m.getModuleGenerateDir());
             successList.add(rValue);
         });
         // 逆向成功项目列表
@@ -111,6 +108,7 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
                 .fileType(FileTypeEnum.getNameByIndex(s.getFileType()))
                 .artifactId(s.getArtifactId()).version(s.getVersion())
                 .groupId(s.getGroupId())
+                .source(s.getSource())
                 .reason(s.getFailEnum().getName() + (s.getReverseFailDescription() != null ? " " + s.getReverseFailDescription() : ""))
                 .build();
             result.add(errorReport);

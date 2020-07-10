@@ -35,6 +35,11 @@ public class ModuleVO extends SourceVO implements Serializable {
      */
     private Boolean match;
 
+    /**
+     * 模块生成目录
+     */
+    private String moduleGenerateDir;
+
     public void addSubModule(ModuleVO module) {
         if (modules == null) {
             modules = Lists.newArrayList();
