@@ -18,6 +18,8 @@ import java.util.Optional;
 /**
  * 解压 sources.jar
  * 对middle.sourceList进行源码解压
+ * 输入：middle.sourceList
+ * 输出：解压sources.jar到tmpDir目录下
  * @author guoguoqiang
  * @since 2020年07月07日
  */

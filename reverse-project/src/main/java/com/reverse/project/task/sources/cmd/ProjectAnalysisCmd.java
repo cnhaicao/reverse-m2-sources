@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * 项目模块结构分析
- * 输出middle.moduleMap
+ * 输入：middle.sourceMap
+ * 输出：middle.moduleMap
  * @author guoguoqiang
  * @since 2020年07月08日
  */
@@ -34,7 +34,6 @@ public class ProjectAnalysisCmd extends AbstractTaskCommand<ReverseSourceContext
         sourceMap.forEach((k, v) -> {
             ModuleVO module = JsonCloneUtils.cloneFrom(v, ModuleVO.class);
             loadSubModule(module, sourceMap);
-            String moduleKey = MapKeyUtil.mapKey(v.getGroupId(), v.getArtifactId(), v.getVersion());
             if (module != null && module.getParent() == null) {
                 moduleMap.put(k, module);
             }

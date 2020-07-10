@@ -13,7 +13,8 @@ import java.util.Set;
 
 /**
  * 收集pom.xml所有<module>模块 以便用于判断模块是否是别人的子模块
- * 输出middle.allModuleHistory
+ * 输入：middle.sourceMap
+ * 输出：middle.allModuleHistory
  *
  * @author guoguoqiang
  * @since 2020年07月09日

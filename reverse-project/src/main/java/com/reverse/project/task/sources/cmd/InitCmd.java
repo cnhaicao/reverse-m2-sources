@@ -14,7 +14,8 @@ import java.io.File;
  * 初始化
  * 检查输入参数并初始化
  * 强制删除及建立临时目录
- *
+ * 输入：所有输入参数
+ * 输出：将相关目录设置成绝对路径格式
  * @author guoguoqiang
  * @since 2020年07月06日
  */
@@ -29,9 +30,9 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
 
         if (StringUtils.isBlank(context.getTmpDir()) || StringUtils.isBlank(context.getScanDir())
-            || StringUtils.isBlank(context.getM2Dir())) {
-            log.error("参数异常");
-            throw new TaskException("参数异常");
+            || StringUtils.isBlank(context.getM2Dir()) || StringUtils.isBlank(context.getOutputDir())) {
+            log.error("参数异常 tmpDir,scanDir,m2Dir,outputDir均不允许为空");
+            throw new TaskException("参数异常 tmpDir,scanDir,m2Dir,outputDir均不允许为空");
         }
         File scanFile = new File(context.getScanDir());
         File m2File = new File(context.getM2Dir());

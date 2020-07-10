@@ -45,4 +45,9 @@ public class Constants {
      */
     public static final String RESOURCES_DIRECTORY = "src" + File.separator + "main" + File.separator + "resources";
 
+    /**
+     * 输出报告的excel文件后缀
+     */
+    public static final String EXPORT_EXCEL_FIX = ".xlsx";
+
 }

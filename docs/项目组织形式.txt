@@ -1,4 +1,4 @@
-一、项目组织形式
+一、maven项目组织形式
 
 1.第一种形式
 ---project (modules在这级 模块parent在这级)

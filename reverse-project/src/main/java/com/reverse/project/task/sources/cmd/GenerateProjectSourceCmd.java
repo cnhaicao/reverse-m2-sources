@@ -1,5 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
+import com.google.common.collect.Lists;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
 import com.reverse.project.constants.FileTypeEnum;
@@ -18,12 +19,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * 生成项目源代码
- * 输入middle.moduleMap
- * 输出output.errorSources
+ * 输入：middle.moduleMap
+ * 输出：
+ * 生成源码在outputDir目录
+ * output.errorSources、output.successSources
  * @author guoguoqiang
  * @since 2020年07月09日
  */
@@ -33,19 +35,22 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
         String outputDir = context.getOutputDir();
+        List<ModuleVO> successSources = Lists.newArrayList();
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         Map<String, ModuleVO> moduleMap = context.getMiddle().getModuleMap();
-        moduleMap.values().forEach(m -> {
+        moduleMap.forEach((k, m) -> {
             log.info("需要生成的源代码:{},版本号:{}", m.getArtifactId(), m.getVersion());
             try {
                 generateSource(m, outputDir);
+                successSources.add(m);
             } catch (Exception e) {
-                log.error("源码生成异常:" + e.getMessage(), e);
+                log.error("源码生成异常:{}，{}", k, e.getMessage(), e);
                 ErrorSourceVO errorSource = buildErrorSource(m, ReverseFailEnum.FAIL_REVERSE_SOURCE);
                 errorSource.setReverseFailDescription("生成源码失败:" + e.getMessage());
                 errorSources.add(errorSource);
             }
         });
+        context.getOutput().setSuccessSources(successSources);
         return false;
     }
 

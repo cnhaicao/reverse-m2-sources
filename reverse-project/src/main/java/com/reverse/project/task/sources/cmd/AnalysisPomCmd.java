@@ -21,7 +21,8 @@ import java.util.Map;
 
 /**
  * 解析pom.xml
- *
+ * 输入：middle.sourceMap
+ * 输出：output.errorSources
  * @author guoguoqiang
  * @since 2020年07月08日
  */

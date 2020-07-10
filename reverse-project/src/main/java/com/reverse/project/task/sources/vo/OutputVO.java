@@ -15,6 +15,14 @@ import java.util.List;
 public class OutputVO implements Serializable {
     private static final long serialVersionUID = -4285145518854752278L;
 
+    /**
+     * 逆向失败的源码
+     */
     private List<ErrorSourceVO> errorSources;
+
+    /**
+     * 逆向成功的源码
+     */
+    private List<ModuleVO> successSources;
 
 }

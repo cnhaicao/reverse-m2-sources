@@ -18,7 +18,8 @@ import java.util.Map;
 /**
  * 移除pom.xml中不支持的packaging的源码
  * 源码逆向只支持maven pom.xml packaging为jar或pom
- * 输出middle.sourceMap及middle.errorSources
+ * 输入：middle.sourceMap
+ * 输出：middle.sourceMap、output.errorSources
  * @author guoguoqiang
  * @since 2020年07月08日
  */

@@ -45,10 +45,9 @@ public class ModuleVO extends SourceVO implements Serializable {
     /**
      * 检查当前模块所有子模块match均为true
      * @return true均存在 false有不存在的module
-     * todo:待实现
      */
     public static boolean checkAllModulesMatch(ModuleVO module) {
-        boolean result = true;
+        boolean result;
         if (CollectionUtils.isEmpty(module.getModules()) || module.getMatch() == null) {
             return true;
         }

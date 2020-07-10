@@ -17,8 +17,8 @@ import java.util.Set;
 
 /**
  * 移除不完整的源码包
- * 输出
- * middle.moduleMap
+ * 输入：middle.moduleMap
+ * 输出：middle.moduleMap、output.errorSources
  * @author guoguoqiang
  * @since 2020年07月09日
  */
@@ -44,6 +44,7 @@ public class RemoveInCompleteSourcesCmd extends AbstractTaskCommand<ReverseSourc
             }
         });
         context.getMiddle().setModuleMap(successModuleMap);
+        context.getOutput().setErrorSources(errorSources);
         return false;
     }
 

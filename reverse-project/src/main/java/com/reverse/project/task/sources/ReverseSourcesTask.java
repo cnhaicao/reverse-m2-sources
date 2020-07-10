@@ -4,6 +4,7 @@ import com.reverse.project.base.task.BaseTask;
 import com.reverse.project.base.task.annotation.TaskChain;
 import com.reverse.project.task.sources.cmd.AnalysisPomCmd;
 import com.reverse.project.task.sources.cmd.CollectSourcesCmd;
+import com.reverse.project.task.sources.cmd.ExportReportCmd;
 import com.reverse.project.task.sources.cmd.GenerateAllModulesHistoryCmd;
 import com.reverse.project.task.sources.cmd.GenerateProjectSourceCmd;
 import com.reverse.project.task.sources.cmd.InitCmd;
@@ -31,7 +32,8 @@ import org.springframework.stereotype.Component;
     GenerateAllModulesHistoryCmd.class,
     ProjectAnalysisCmd.class,
     RemoveInCompleteSourcesCmd.class,
-    GenerateProjectSourceCmd.class
+    GenerateProjectSourceCmd.class,
+    ExportReportCmd.class
 })
 public class ReverseSourcesTask<ReverseSourceContext> extends BaseTask {
 
