@@ -28,7 +28,7 @@ public class CollectSourcesCmd extends AbstractTaskCommand<ReverseSourceContext>
     public boolean exec(ReverseSourceContext context) throws Exception {
         List<SourceVO> sources = context.getMiddle().getSourceList();
         if (CollectionUtil.isEmpty(sources)) {
-            log.error("需要逆向的文件列表为空");
+            log.error("The list of files to be reversed is empty.");
             return true;
         }
         Map<String, SourceVO> sourceMap = sources.stream().collect(Collectors.toMap(

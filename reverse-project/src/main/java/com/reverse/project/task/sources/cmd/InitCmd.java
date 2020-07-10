@@ -27,12 +27,12 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
         if (context == null) {
-            throw new TaskException("上下文对象不能为空");
+            throw new TaskException("context is null.");
         }
         setDefaultValue(context);
         if (StringUtils.isBlank(context.getScanDir()) || StringUtils.isBlank(context.getM2Dir())) {
-            log.error("参数异常 scanDir,m2Dir均不允许为空");
-            throw new TaskException("参数异常 scanDir,m2Dir均不允许为空");
+            log.error("param error scanDir or m2Dir is blank.");
+            throw new TaskException("param error scanDir or m2Dir is blank.");
         }
         File scanFile = new File(context.getScanDir());
         File m2File = new File(context.getM2Dir());

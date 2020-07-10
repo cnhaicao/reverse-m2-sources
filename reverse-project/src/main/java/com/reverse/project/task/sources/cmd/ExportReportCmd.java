@@ -95,7 +95,7 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        log.error("逆向报告生成成功:" + new File(excel).getAbsolutePath());
+        log.error("Reverse report generated successfully:" + new File(excel).getAbsolutePath());
     }
 
     private List<ErrorReport> generateErrorReport(List<ErrorSourceVO> errorSources) {

@@ -14,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @since 2020年07月02日
  */
 @Slf4j
-@SpringBootApplication
+//@SpringBootApplication
 public class ReverseApplicationTest {
 
     @SuppressWarnings("unchecked")
@@ -27,7 +27,7 @@ public class ReverseApplicationTest {
         context.setTmpDir("/Users/guoguoqiang/.m2/repository-tmp");
         context.setOutputDir("/Users/guoguoqiang/.m2/repository-generate");
         reverseSourcesTask.execute(context);
-        log.info("执行成功，耗时:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
+        log.info("Execute successfully, taste:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
     }
 
 }

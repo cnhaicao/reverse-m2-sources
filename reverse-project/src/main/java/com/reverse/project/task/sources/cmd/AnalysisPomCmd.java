@@ -36,7 +36,7 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
         Map<String, SourceVO> sourceMap = context.getMiddle().getSourceMap();
         Map<String, SourceVO> pomSuccessMap = Maps.newHashMap();
         if (MapUtils.isEmpty(sourceMap)) {
-            log.error("需要逆向的文件列表为空");
+            log.error("The list of files to be reversed is empty.");
             return true;
         }
         List<ErrorSourceVO> errorSources = Lists.newArrayList();
@@ -79,19 +79,19 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
         Pom parent = pom.getParent();
         String parentKey = MapKeyUtil.mapKey(parent.getGroupId(), parent.getArtifactId(), parent.getVersion());
         if (!pom.getVersion().equals(parent.getVersion())) {
-            log.debug("pom version:{}不同于parent version:{},不解析 parent.", MapKeyUtil.mapKey(pom.getGroupId(), pom.getArtifactId(), pom.getVersion()), parentKey);
+            log.debug("pom version:{} is different from parent version:{}, parent is not resolved.", MapKeyUtil.mapKey(pom.getGroupId(), pom.getArtifactId(), pom.getVersion()), parentKey);
             return;
         }
         try {
             SourceVO parentSource = sourceMap.get(parentKey);
             if (parentSource == null) {
-                throw new ParentPomException("父pom源码包不存在:" + parentKey);
+                throw new ParentPomException("parent pom not exists:" + parentKey);
             }
             PomUtils.analysisPom(parentSource.getPomPath(), parent);
             analysisParentPom(parent, sourceMap);
         } catch (Exception e) {
-            log.error("父pom解析异常," + e.getMessage());
-            throw new ParentPomException("父pom解析异常", e);
+            log.error("parent pom error," + e.getMessage());
+            throw new ParentPomException(e.getMessage(), e);
         }
     }
 }

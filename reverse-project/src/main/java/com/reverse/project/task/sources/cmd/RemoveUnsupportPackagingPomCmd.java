@@ -34,7 +34,7 @@ public class RemoveUnsupportPackagingPomCmd extends AbstractTaskCommand<ReverseS
         Map<String, SourceVO> pomSuccessMap = Maps.newHashMap();
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         if (MapUtils.isEmpty(sourceMap)) {
-            log.error("需要逆向的文件列表为空");
+            log.error("The list of files to be reversed is empty.");
             return true;
         }
         sourceMap.forEach((k, v) -> {

@@ -39,7 +39,7 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         Map<String, ModuleVO> moduleMap = context.getMiddle().getModuleMap();
         moduleMap.forEach((k, m) -> {
-            log.info("需要生成的源代码:{},版本号:{}", m.getArtifactId(), m.getVersion());
+            log.info("catch source:{},version:{}", m.getArtifactId(), m.getVersion());
             try {
                 StringBuilder outputDirBase = new StringBuilder(outputDir);
                 if (ModuleVO.moduleIsSources(m)) {
@@ -50,9 +50,9 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
                 generateSource(m, outputDirBase.toString());
                 successSources.add(m);
             } catch (Exception e) {
-                log.error("源码生成异常:{}，{}", k, e.getMessage(), e);
+                log.error("source generate failed:{}，{}", k, e.getMessage(), e);
                 ErrorSourceVO errorSource = buildErrorSource(m, ReverseFailEnum.FAIL_REVERSE_SOURCE);
-                errorSource.setReverseFailDescription("生成源码失败:" + e.getMessage());
+                errorSource.setReverseFailDescription("source generate failed:" + e.getMessage());
                 errorSources.add(errorSource);
             }
         });

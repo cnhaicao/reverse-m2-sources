@@ -30,7 +30,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
     public boolean exec(ReverseSourceContext context) throws Exception {
         List<SourceVO> sources = context.getMiddle().getSourceList();
         if (CollectionUtil.isEmpty(sources)) {
-            log.error("需要逆向的文件列表为空");
+            log.error("param error scanDir or m2Dir is blank.");
             return true;
         }
         sources.parallelStream().forEach(s -> {

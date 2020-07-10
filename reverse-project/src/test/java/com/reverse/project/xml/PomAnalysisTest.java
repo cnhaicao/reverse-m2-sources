@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * pomPath.xml解析测试
+ * pomPath.xml analysis test
  *
  * @author guoguoqiang
  * @since 2020年07月07日
@@ -27,7 +27,7 @@ public class PomAnalysisTest {
         Document document = Jsoup.parse(new File(pom), "utf-8");
         Elements el = document.select("project>packaging");
         if (el.size() != 0) {
-            log.info("打包方式:" + el.get(0).text());
+            log.info("packaging:" + el.get(0).text());
         }
         Elements parent = document.select("project>parent");
         if (parent.size() > 0) {
@@ -35,7 +35,7 @@ public class PomAnalysisTest {
             String artifactId = parent.select("artifactId").text();
             String version = parent.select("version").text();
             String relativePath = parent.select("relativePath").val();
-            log.info("存在parent, group Id:{}, artifactId:{}, version:{}, relativePath:{}", groupId, artifactId,
+            log.info("exists parent, group Id:{}, artifactId:{}, version:{}, relativePath:{}", groupId, artifactId,
                 version, relativePath);
         }
     }
