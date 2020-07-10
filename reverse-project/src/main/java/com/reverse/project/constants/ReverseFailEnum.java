@@ -9,15 +9,17 @@ package com.reverse.project.constants;
 @SuppressWarnings("unused")
 public enum ReverseFailEnum {
     /**
-     * pom.xml缺失或解析异常
+     * 不支持的packaging方式
      */
     FAIL_NO_SUPPORT(0, "不支持的packaging方式"),
-    FAIL_POM(1, "pom.xml解析异常"),
+    /**
+     * pom.xml缺失或解析异常
+     */
+    FAIL_POM(1, "pom.xml缺失或解析异常"),
     FAIL_NOT_EXISTS_PARENT_POM(2, "父pom解析异常"),
     FAIL_MODULE_MISS(3, "module缺失"),
     FAIL_UN_MATCH_IN_MODULE(4, "未被其它模块包含"),
-    FAIL_REVERSE_SOURCE(5, "源码生成阶段异常")
-    ;
+    FAIL_REVERSE_SOURCE(5, "源码生成阶段异常");
 
 
 
@@ -43,5 +45,14 @@ public enum ReverseFailEnum {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public static String getNameByIndex(int index) {
+        for (ReverseFailEnum fileTypeEnum : ReverseFailEnum.values()) {
+            if (fileTypeEnum.getCode() == index) {
+                return fileTypeEnum.getName();
+            }
+        }
+        return null;
     }
 }

@@ -4,10 +4,16 @@ import cn.hutool.poi.excel.ExcelWriter;
 import com.google.common.collect.Lists;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
+import com.reverse.project.constants.FileTypeEnum;
+import com.reverse.project.constants.ReverseFailEnum;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
 import com.reverse.project.task.sources.vo.ErrorSourceVO;
 import com.reverse.project.task.sources.vo.ModuleVO;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.stereotype.Component;
@@ -87,10 +93,63 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
             //跳过当前行
             writer.passCurrentRow();
             //一次性写出内容，强制输出标题
-            writer.write(errorSources, true);
+            writer.write(generateErrorReport(errorSources), true);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
+        log.error("逆向报告生成成功:" + new File(excel).getAbsolutePath());
+    }
+
+    private List<ErrorReport> generateErrorReport(List<ErrorSourceVO> errorSources) {
+        List<ErrorReport> result = Lists.newArrayList();
+        if (CollectionUtils.isEmpty(errorSources)) {
+            return result;
+        }
+        errorSources.forEach(s -> {
+            ErrorReport errorReport = ErrorReport.builder()
+                .fileType(FileTypeEnum.getNameByIndex(s.getFileType()))
+                .artifactId(s.getArtifactId()).version(s.getVersion())
+                .groupId(s.getGroupId())
+                .reason(s.getFailEnum().getName() + (s.getReverseFailDescription() != null ? " " + s.getReverseFailDescription() : ""))
+                .build();
+            result.add(errorReport);
+        });
+        return result;
+    }
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    private class ErrorReport {
+        /**
+         * 源码包类型 source.jar/pom
+         */
+        private String fileType;
+
+        /**
+         * maven artifactId
+         */
+        private String artifactId;
+
+        /**
+         * maven版本号
+         */
+        private String version;
+
+        /**
+         * maven groupId
+         */
+        private String groupId;
+
+        /**
+         * 源文件路径(绝对路径)
+         */
+        private String source;
+
+        /**
+         * 逆向失败原因
+         */
+        private String reason;
     }
 
 }
