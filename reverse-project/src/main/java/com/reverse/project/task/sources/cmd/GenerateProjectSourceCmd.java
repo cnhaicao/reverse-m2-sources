@@ -42,7 +42,7 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
             log.info("需要生成的源代码:{},版本号:{}", m.getArtifactId(), m.getVersion());
             try {
                 StringBuilder outputDirBase = new StringBuilder(outputDir);
-                if (m.getSourcesPath() != null && isJavaFolder(new File(m.getSourcesPath()))) {
+                if (ModuleVO.moduleIsSources(m)) {
                     outputDirBase.append(File.separator).append(Constants.FOLDER_SOURCES);
                 } else {
                     outputDirBase.append(File.separator).append(Constants.FOLDER_POM);
@@ -147,31 +147,4 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
         return false;
     }
 
-    /**
-     * 从解压文件夹随机找到.java文件绝对路径
-     * @param target sources.jar解压文件夹
-     * @return java源码包绝对路径
-     */
-//    private String findJavaFolder(File target) {
-//        if (!target.exists() || target.isFile()) {
-//            return null;
-//        }
-//        File[] listFile = target.listFiles();
-//        if (listFile == null || listFile.length == 0) {
-//            return null;
-//        }
-//        Optional<File> file = Arrays.stream(listFile).filter(f -> f.isFile() && f.getName().toLowerCase().endsWith(Constants.JAVA_FIX)).findFirst();
-//        if (file.isPresent()) {
-//            return file.get().getAbsolutePath();
-//        }
-//        for (File item: listFile) {
-//            if (item.isDirectory()) {
-//                String javaPath = findJavaFolder(item);
-//                if (javaPath != null) {
-//                    return javaPath;
-//                }
-//            }
-//        }
-//        return null;
-//    }
 }

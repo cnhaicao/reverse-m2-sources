@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -63,5 +64,27 @@ public class ModuleVO extends SourceVO implements Serializable {
             }
         }
         return true;
+    }
+
+    /**
+     * 当前模块(含子模块)是否java sources.jar包
+     * @param module module
+     * @return true是sources.jar包 false: pom包
+     */
+    public static boolean moduleIsSources(ModuleVO module) {
+        boolean result;
+        if (StringUtils.isNotBlank(module.getSourcesPath())) {
+            return true;
+        }
+        if (CollectionUtils.isEmpty(module.getModules())) {
+            return false;
+        }
+        for (ModuleVO subModule: module.getModules()) {
+            result = moduleIsSources(subModule);
+            if (result) {
+                return true;
+            }
+        }
+        return false;
     }
 }
