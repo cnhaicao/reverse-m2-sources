@@ -85,12 +85,12 @@ public class AnalysisPomCmd extends AbstractTaskCommand<ReverseSourceContext> {
         try {
             SourceVO parentSource = sourceMap.get(parentKey);
             if (parentSource == null) {
-                throw new ParentPomException("父pom不存在:" + parentKey);
+                throw new ParentPomException("父pom源码包不存在:" + parentKey);
             }
             PomUtils.analysisPom(parentSource.getPomPath(), parent);
             analysisParentPom(parent, sourceMap);
         } catch (Exception e) {
-            log.error("父pom解析异常" + e.getMessage(), e);
+            log.error("父pom解析异常," + e.getMessage());
             throw new ParentPomException("父pom解析异常", e);
         }
     }
