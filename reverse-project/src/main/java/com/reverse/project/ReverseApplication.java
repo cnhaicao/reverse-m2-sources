@@ -25,8 +25,6 @@ public class ReverseApplication {
         ReverseSourceContext context = new ReverseSourceContext();
         context.setM2Dir("./docs/m2-source-example");
         context.setScanDir("./docs/m2-source-example");
-        context.setTmpDir("./docs/m2-source-example-tmp");
-        context.setOutputDir("./docs/m2-source-example-generate");
         reverseSourcesTask.execute(context);
         log.info("执行成功，耗时:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
     }

@@ -60,4 +60,15 @@ public class Constants {
      */
     public static final String FOLDER_POM = "pom";
 
+    /**
+     * 临时目录后缀
+     */
+    public static final String FOLDER_FIX_TMP = "-tmp";
+
+    /**
+     * 源码生成目录后缀
+     */
+    public static final String FOLDER_FIX_GENERATE = "-generate";
+
+
 }

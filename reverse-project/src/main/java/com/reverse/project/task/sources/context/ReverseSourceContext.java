@@ -23,27 +23,30 @@ public class ReverseSourceContext extends TaskContext {
 
     // -----------------------输入参数-----------------------
     /**
-     * m2根目录
+     * m2根目录 必填参数
      */
     private String m2Dir;
 
     /**
-     * 待逆向的目录
+     * 待逆向的目录 必填参数
      */
     private String scanDir;
 
     /**
      * 是否强制删除临时目录
+     * 默认为false
      */
     private boolean forceDeleteTmpDir = false;
 
     /**
      * 临时目录 用于存放-sources.jar解压文件
+     * 未设置时 默认为${scanDir}-tmp
      */
     private String tmpDir;
 
     /**
      * 源码输出目录
+     * 未设置时 默认为${scanDir}-generate
      */
     private String outputDir;
 
