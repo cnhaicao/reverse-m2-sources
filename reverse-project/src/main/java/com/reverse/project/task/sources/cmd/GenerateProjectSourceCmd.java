@@ -1,5 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
+import cn.hutool.core.io.FileUtil;
 import com.google.common.collect.Lists;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
@@ -78,7 +79,7 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
             FileUtils.forceDelete(file);
             FileUtils.forceMkdir(file);
         }
-        module.setModuleGenerateDir(file.getAbsolutePath());
+        module.setModuleGenerateDir(FileUtil.getAbsolutePath(file));
         FileUtils.copyFile(new File(module.getPomPath()), new File(sb.toString() + File.separator + "pom.xml"));
         if (FileTypeEnum.FILE_TYPE_SOURCES.getCode() == module.getFileType()) {
             mkdirSourceDir(sb.toString());

@@ -1,5 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.excel.ExcelWriter;
 import com.google.common.collect.Lists;
 import com.reverse.project.base.task.AbstractTaskCommand;
@@ -95,7 +96,7 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
-        log.error("Reverse report generated successfully:" + new File(excel).getAbsolutePath());
+        log.error("Reverse report generated successfully:" + FileUtil.getAbsolutePath(excel));
     }
 
     private List<ErrorReport> generateErrorReport(List<ErrorSourceVO> errorSources) {

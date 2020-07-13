@@ -1,5 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
+import cn.hutool.core.io.FileUtil;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
 import com.reverse.project.constants.FileTypeEnum;
@@ -47,7 +48,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         // 源码目录的判断条件为 存在后缀为-sources.jar的文件或（存在.pom且不存在.jar)
         Optional<File> s = Arrays.stream(listFile).filter(f -> f.getName().endsWith(Constants.SOURCES_FIX)).max(Comparator.naturalOrder());
         if (s.isPresent()) {
-            log.debug("catch sources.jar:{}", s.get().getAbsolutePath());
+            log.debug("catch sources.jar:{}", FileUtil.getAbsolutePath(s.get()));
             File sourceFile = s.get();
             SourceVO source = buildSource(sourceFile, m2Dir, FileTypeEnum.FILE_TYPE_SOURCES.getCode());
             sources.add(source);
@@ -58,7 +59,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
             .max(Comparator.naturalOrder());
 
         if (pom.isPresent()) {
-            log.debug("catch pom.xml:{}", pom.get().getAbsolutePath());
+            log.debug("catch pom.xml:{}", FileUtil.getAbsolutePath(pom.get()));
             File pomFile = pom.get();
             SourceVO source = buildSource(pomFile, m2Dir, FileTypeEnum.FILE_TYPE_POM.getCode());
             source.setPomPath(source.getSource());
@@ -76,7 +77,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
     private SourceVO buildSource(File file, String m2Dir, int fileType) {
         SourceVO result = new SourceVO();
         result.setFileType(fileType);
-        result.setSource(file.getAbsolutePath());
+        result.setSource(FileUtil.getAbsolutePath(file));
         result.setVersion(file.getParentFile().getName());
         result.setArtifactId(file.getParentFile().getParentFile().getName());
         result.setGroupId(getGroupId(file, m2Dir));
@@ -91,7 +92,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (!m2Dir.endsWith(File.separator)) {
             m2Dir = m2Dir + File.separator;
         }
-        String path = groupFileDir.getAbsolutePath();
+        String path = FileUtil.getAbsolutePath(groupFileDir);
         path = path.substring(path.indexOf(m2Dir) + m2Dir.length());
         return path.replaceAll(File.separator, ".");
     }

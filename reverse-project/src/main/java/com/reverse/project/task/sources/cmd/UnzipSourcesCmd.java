@@ -1,6 +1,7 @@
 package com.reverse.project.task.sources.cmd;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ZipUtil;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.constants.Constants;
@@ -71,7 +72,7 @@ public class UnzipSourcesCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
         Optional<File> file = Arrays.stream(listFile).filter(f -> f.getName().equals(Constants.POM_XML)).findFirst();
         if (file.isPresent()) {
-            return file.get().getAbsolutePath();
+            return FileUtil.getAbsolutePath(file.get());
         }
         for (File item: listFile) {
             if (item.isDirectory()) {

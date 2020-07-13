@@ -1,5 +1,6 @@
 package com.reverse.project.task.sources.cmd;
 
+import cn.hutool.core.io.FileUtil;
 import com.reverse.project.base.task.AbstractTaskCommand;
 import com.reverse.project.base.task.TaskException;
 import com.reverse.project.constants.Constants;
@@ -37,10 +38,10 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         File scanFile = new File(context.getScanDir());
         File m2File = new File(context.getM2Dir());
         if (!scanFile.exists() || scanFile.isFile()) {
-            throw new TaskException("scanDir error:" + context.getScanDir() + " must exists.");
+            throw new TaskException("scanDir error:" + FileUtil.getAbsolutePath(scanFile) + " must exists.");
         }
         if (!m2File.exists() || m2File.isFile()) {
-            throw new TaskException("m2Dir error:" + context.getM2Dir() + " must exists.");
+            throw new TaskException("m2Dir error:" + FileUtil.getAbsolutePath(m2File) + " must exists.");
         }
         File tmpFile = new File(context.getTmpDir());
         boolean mustDeleteTmpDir = tmpFile.exists() && (context.isForceDeleteTmpDir() || tmpFile.isFile());
@@ -54,10 +55,10 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         if (!outputFile.exists()) {
             FileUtils.forceMkdir(outputFile);
         }
-        context.setTmpDir(tmpFile.getAbsolutePath());
-        context.setScanDir(scanFile.getAbsolutePath());
-        context.setM2Dir(m2File.getAbsolutePath());
-        context.setOutputDir(outputFile.getAbsolutePath());
+        context.setTmpDir(FileUtil.getAbsolutePath(tmpFile));
+        context.setScanDir(FileUtil.getAbsolutePath(scanFile));
+        context.setM2Dir(FileUtil.getAbsolutePath(m2File));
+        context.setOutputDir(FileUtil.getAbsolutePath(outputFile));
         return false;
     }
 
@@ -67,11 +68,11 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
         File scanFile = new File(context.getScanDir());
         if (StringUtils.isBlank(context.getTmpDir())) {
-            context.setTmpDir(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_TMP);
+            context.setTmpDir(FileUtil.getAbsolutePath(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_TMP));
         }
 
         if (StringUtils.isBlank(context.getOutputDir())) {
-            context.setOutputDir(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_GENERATE);
+            context.setOutputDir(FileUtil.getAbsolutePath(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_GENERATE));
         }
     }
 
