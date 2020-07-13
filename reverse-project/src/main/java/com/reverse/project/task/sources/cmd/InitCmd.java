@@ -59,6 +59,10 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         context.setScanDir(FileUtil.getAbsolutePath(scanFile));
         context.setM2Dir(FileUtil.getAbsolutePath(m2File));
         context.setOutputDir(FileUtil.getAbsolutePath(outputFile));
+        if (!context.getScanDir().contains(context.getM2Dir())) {
+            throw new TaskException("scanDir must be sub directory of m2Dir,scanDir:"
+                + context.getScanDir() + ",m2Dir:" + context.getM2Dir());
+        }
         return false;
     }
 
