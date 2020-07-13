@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.reverse</groupId>
         <artifactId>reverse-m2-sources</artifactId>
-        <version>${reverse-m2-sources.version}</version>
+        <version>${revision}</version>
         <relativePath>..</relativePath>
     </parent>
 

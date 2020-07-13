@@ -4,7 +4,7 @@
     <parent>
         <groupId>com.reverse</groupId>
         <artifactId>reverse-parent</artifactId>
-        <version>${reverse-m2-sources.version}</version>
+        <version>${revision}</version>
         <relativePath>../reverse-parent</relativePath>
     </parent>
 
@@ -14,6 +14,9 @@
     <packaging>jar</packaging>
     <description>reverse project</description>
 
+    <properties>
+        <main.basedir>${basedir}/..</main.basedir>
+    </properties>
     <dependencies>
 
         <dependency>

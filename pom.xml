@@ -10,13 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.reverse</groupId>
     <artifactId>reverse-m2-sources</artifactId>
-    <version>${reverse-m2-sources.version}</version>
+    <version>${revision}</version>
     <name>reverse-m2-sources</name>
     <description>reverse java project from m2 sources.jar</description>
     <packaging>pom</packaging>
 
     <properties>
-        <reverse-m2-sources.version>1.0.0-SNAPSHOT</reverse-m2-sources.version>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <main.basedir>${basedir}</main.basedir>
     </properties>
     <modules>
         <module>reverse-parent</module>
