@@ -14,7 +14,7 @@ import org.springframework.context.ConfigurableApplicationContext;
  * @since 2020年07月02日
  */
 @Slf4j
-//@SpringBootApplication
+@SpringBootApplication
 public class ReverseApplicationTest {
 
     @SuppressWarnings("unchecked")

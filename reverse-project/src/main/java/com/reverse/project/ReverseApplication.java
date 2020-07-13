@@ -7,10 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.PosixParser;
-import org.apache.commons.lang.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * reverse spring boot application
@@ -20,12 +20,18 @@ import org.springframework.context.ConfigurableApplicationContext;
  */
 @Slf4j
 @SpringBootApplication
-public class ReverseApplication {
+public class ReverseApplication implements CommandLineRunner {
+    @Autowired
+    private ReverseSourcesTask<ReverseSourceContext> reverseSourcesTask;
 
-    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception {
-        ConfigurableApplicationContext applicationContext = SpringApplication.run(ReverseApplication.class, args);
-        ReverseSourcesTask<ReverseSourceContext> reverseSourcesTask = (ReverseSourcesTask<ReverseSourceContext>) applicationContext.getBean(ReverseSourcesTask.class);
+        SpringApplication.run(ReverseApplication.class, args);
+
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public void run(String... args) throws Exception {
         Options options = CliUtil.buildCommandlineOptions(new Options());
         CommandLine commandLine = CliUtil.parseCmdLine("java -jar reverse-project.jar", args, CliUtil.buildCommandlineOptions(options), new PosixParser());
         if (null == commandLine) {
@@ -43,5 +49,4 @@ public class ReverseApplication {
         reverseSourcesTask.execute(context);
         log.info("Execute completely，taste:{}", (context.getEndTime().getTime() - context.getBeginTime().getTime()));
     }
-
 }
