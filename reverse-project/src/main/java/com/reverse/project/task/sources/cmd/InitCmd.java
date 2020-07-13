@@ -68,11 +68,11 @@ public class InitCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
         File scanFile = new File(context.getScanDir());
         if (StringUtils.isBlank(context.getTmpDir())) {
-            context.setTmpDir(FileUtil.getAbsolutePath(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_TMP));
+            context.setTmpDir(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_TMP);
         }
 
         if (StringUtils.isBlank(context.getOutputDir())) {
-            context.setOutputDir(FileUtil.getAbsolutePath(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_GENERATE));
+            context.setOutputDir(scanFile.getParentFile().getAbsolutePath() + File.separator + scanFile.getName() + Constants.FOLDER_FIX_GENERATE);
         }
     }
 
