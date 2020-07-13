@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.cloud</groupId>
         <artifactId>cloud-parent</artifactId>
-        <version>${cloud.version}</version>
+        <version>${revision}</version>
         <relativePath>../cloud-parent</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cloud-service</artifactId>
-    <version>${cloud.version}</version>
+    <version>${revision}</version>
     <name>cloud-service</name>
     <packaging>jar</packaging>
     <description>cloud service project</description>
@@ -20,6 +20,10 @@
         <dependency>
             <groupId>com.cloud</groupId>
             <artifactId>cloud-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-repository</artifactId>
         </dependency>
         <!--本项目模块-->
 

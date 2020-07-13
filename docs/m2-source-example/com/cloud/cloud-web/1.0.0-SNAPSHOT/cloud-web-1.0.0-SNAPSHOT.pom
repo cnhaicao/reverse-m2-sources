@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.cloud</groupId>
         <artifactId>cloud-parent</artifactId>
-        <version>${cloud.version}</version>
+        <version>${revision}</version>
         <relativePath>../cloud-parent</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cloud-web</artifactId>
-    <version>${cloud.version}</version>
+    <version>${revision}</version>
     <name>cloud-web</name>
     <packaging>jar</packaging>
     <description>cloud web project</description>

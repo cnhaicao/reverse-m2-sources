@@ -4,13 +4,13 @@
     <parent>
         <groupId>com.cloud</groupId>
         <artifactId>cloud-parent</artifactId>
-        <version>${cloud.version}</version>
+        <version>${revision}</version>
         <relativePath>../cloud-parent</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>cloud-api</artifactId>
-    <version>${cloud.version}</version>
+    <version>${revision}</version>
     <name>cloud-api</name>
     <packaging>jar</packaging>
     <description>cloud api project</description>
@@ -30,10 +30,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
