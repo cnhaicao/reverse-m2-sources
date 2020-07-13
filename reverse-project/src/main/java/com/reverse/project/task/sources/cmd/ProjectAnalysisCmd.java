@@ -2,7 +2,10 @@ package com.reverse.project.task.sources.cmd;
 
 import com.google.common.collect.Maps;
 import com.reverse.project.base.task.AbstractTaskCommand;
+import com.reverse.project.constants.ReverseFailEnum;
+import com.reverse.project.exception.ParentPomException;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
+import com.reverse.project.task.sources.vo.ErrorSourceVO;
 import com.reverse.project.task.sources.vo.ModuleVO;
 import com.reverse.project.task.sources.vo.Pom;
 import com.reverse.project.task.sources.vo.SourceVO;
@@ -10,8 +13,10 @@ import com.reverse.project.utils.JsonCloneUtils;
 import com.reverse.project.utils.MapKeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -29,17 +34,26 @@ public class ProjectAnalysisCmd extends AbstractTaskCommand<ReverseSourceContext
     @Override
     public boolean exec(ReverseSourceContext context) throws Exception {
         final Map<String, SourceVO> sourceMap = context.getMiddle().getSourceMap();
-
+        List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         Map<String, ModuleVO> moduleMap = Maps.newHashMap();
         sourceMap.forEach((k, v) -> {
-            ModuleVO module = JsonCloneUtils.cloneFrom(v, ModuleVO.class);
-            loadSubModule(module, sourceMap);
-            if (module != null && module.getParent() == null) {
-                moduleMap.put(k, module);
+            try {
+                ModuleVO module = JsonCloneUtils.cloneFrom(v, ModuleVO.class);
+                loadSubModule(module, sourceMap);
+                if (module != null && module.getParent() == null) {
+                    moduleMap.put(k, module);
+                }
+            } catch (Exception e) {
+                log.error("load failed:{}, error:{}", k, e.getMessage(), e);
+                ErrorSourceVO errorSource = new ErrorSourceVO();
+                BeanUtils.copyProperties(v, errorSource);
+                errorSource.setFailEnum(ReverseFailEnum.FAIL_ANALYSIS_SOURCE);
+                errorSource.setReverseFailDescription(ReverseFailEnum.FAIL_ANALYSIS_SOURCE.getName() + ":" + e.getMessage());
+                errorSources.add(errorSource);
             }
         });
         context.getMiddle().setModuleMap(moduleMap);
-
+        context.getOutput().setErrorSources(errorSources);
         return false;
     }
 

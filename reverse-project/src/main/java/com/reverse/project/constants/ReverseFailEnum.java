@@ -19,7 +19,8 @@ public enum ReverseFailEnum {
     FAIL_NOT_EXISTS_PARENT_POM(2, "父pom解析异常"),
     FAIL_MODULE_MISS(3, "module缺失"),
     FAIL_UN_MATCH_IN_MODULE(4, "未被其它模块包含"),
-    FAIL_REVERSE_SOURCE(5, "源码生成阶段异常");
+    FAIL_REVERSE_SOURCE(5, "源码生成阶段异常"),
+    FAIL_ANALYSIS_SOURCE(6, "源码结构分析阶段异常");
 
 
 
