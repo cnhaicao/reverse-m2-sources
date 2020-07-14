@@ -40,7 +40,7 @@ public class ExportReportCmd extends AbstractTaskCommand<ReverseSourceContext> {
     public boolean exec(ReverseSourceContext context) throws Exception {
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         List<ModuleVO> successSources = context.getOutput().getSuccessSources();
-
+        log.error("Reverse m2 sources successfully, success project:{}, failed:{}", successSources.size(), errorSources.size());
         exportExcel(context.getOutputDir(), successSources, errorSources);
         return false;
     }

@@ -73,7 +73,10 @@ public class ProjectAnalysisCmd extends AbstractTaskCommand<ReverseSourceContext
             Optional<SourceVO> parentSource = sourceMap.values().parallelStream()
                 .filter(s -> s.getGroupId().equals(pom.getGroupId())
                     && s.getVersion().equals(pom.getVersion())
-                    && s.getPom().getModules().contains(pom.getArtifactId())).findFirst();
+                    && s.getPom().getModules().contains(pom.getArtifactId())
+                    // 跳过父模块是当前模块时
+                    && !s.getPom().getArtifactId().equals(pom.getArtifactId())
+                    ).findFirst();
             if (parentSource.isPresent()) {
                 ModuleVO parent = JsonCloneUtils.cloneFrom(parentSource.get(), ModuleVO.class);
                 if (parent != null) {
@@ -88,6 +91,10 @@ public class ProjectAnalysisCmd extends AbstractTaskCommand<ReverseSourceContext
         // 加载子模块
         for (String moduleArtifactId: module.getPom().getModules()) {
             String subModuleKey = MapKeyUtil.mapKey(pom.getGroupId(), moduleArtifactId, pom.getVersion());
+            // 子模块是当前模块时跳过加载
+            if (moduleArtifactId.equals(module.getArtifactId())) {
+                continue;
+            }
             if (sourceMap.containsKey(subModuleKey)) {
                 ModuleVO subModule = JsonCloneUtils.cloneFrom(sourceMap.get(subModuleKey), ModuleVO.class);
                 if (subModule != null) {

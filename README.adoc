@@ -7,19 +7,29 @@
 
 *项目目的*：reverse m2 sources 用于实现将本地maven仓库-sources.jar源码包逆向成java源代码
 
-java deploy到maven私服时一般会将依赖的pom.xml及源码包sources.jar发布到maven仓库上，通过pom.xml及sources.jar的分析，可逆向到可运行的java工程。
-
-
-使用ide工具，通过Download Sources可将项目maven依赖的包的sources.jar源码包下载到本地仓库中，依赖的模块pom.xml则可通过爬虫从maven私服抓取下来。
+#java deploy到maven私服时一般会将依赖的pom.xml及源码包sources.jar发布到maven仓库上，通过pom.xml及sources.jar的分析，可逆向到可运行的java工程。
+使用ide工具，通过Download Sources可将项目maven依赖的包的sources.jar源码包下载到本地仓库中，依赖的模块pom.xml则可通过爬虫从maven私服抓取下来。#
 
 *演示：*
 
 1.通过自带的m2-source-example进行逆向成可运行的java工程
 
 2.自己生成sources.jar到本地仓库进行源码逆向测试
-可通过以下命令将项目源码打包到本地仓库：
-`mvn clean source:jar install -DskipTests=true`
 
+可通过以下命令将任意maven项目源码先打包到本地仓库：
+`mvn clean source:jar install -DskipTests=true`
+然后使用以下命令对.m2本地仓库进行逆向还原成可运行的maven工程
 完整的运行示例：
 
-`java -jar reverse-project-1.0.0-SNAPSHOT.jar -m /Users/cnhaicao/.m2/repository -s /Users/cnhaicao/.m2/repository`
+`java -jar reverse-project-1.0.0-SNAPSHOT.jar -m /Users/cnhaicao/.m2/repository/ -s /Users/cnhaicao/.m2/repository/org -o /Users/cnhaicao/.m2/repository-all -t /Users/cnhaicao/.m2/repository-tmp`
+
+-m 指定m2目录
+
+-s 指定扫描目录 (注意：扫描目录需要和m2目录相同或是m2目录的子目录)
+
+-o 指定源码逆向后的保存路径
+
+-t sources.jar解压临时目录 执行后可手工删除
+
+
+运行项目源码需要自己安装lombok插件
