@@ -94,7 +94,10 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
         String path = FileUtil.getAbsolutePath(groupFileDir);
         path = path.substring(path.indexOf(m2Dir) + m2Dir.length());
-        return path.replaceAll(File.separator, ".");
+        if (path.contains(File.separator)) {
+            return path.replaceAll(File.separator, ".");
+        }
+        return path;
     }
 
 }
