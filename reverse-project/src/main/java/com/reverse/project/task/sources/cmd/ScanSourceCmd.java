@@ -7,6 +7,7 @@ import com.reverse.project.constants.FileTypeEnum;
 import com.reverse.project.task.sources.context.ReverseSourceContext;
 import com.reverse.project.task.sources.vo.SourceVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -94,10 +95,7 @@ public class ScanSourceCmd extends AbstractTaskCommand<ReverseSourceContext> {
         }
         String path = FileUtil.getAbsolutePath(groupFileDir);
         path = path.substring(path.indexOf(m2Dir) + m2Dir.length());
-        if (path.contains(File.separator)) {
-            return path.replaceAll(File.separator, ".");
-        }
-        return path;
+        return StringUtils.replace(path, File.separator, ".");
     }
 
 }
