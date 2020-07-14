@@ -14,13 +14,15 @@
 
 1.通过自带的m2-source-example进行逆向成可运行的java工程
 
+java -jar reverse-project-1.0.0-SNAPSHOT.jar -m $PATH/docs/m2-source-example -s $PATH/docs/m2-source-example
+
+
 2.自己生成sources.jar到本地仓库进行源码逆向测试
 
 可通过以下命令将任意maven项目源码先打包到本地仓库：
 `mvn clean source:jar install -DskipTests=true`
 然后使用以下命令对.m2本地仓库进行逆向还原成可运行的maven工程
 完整的运行示例：
-
 `java -jar reverse-project-1.0.0-SNAPSHOT.jar -m /Users/cnhaicao/.m2/repository/ -s /Users/cnhaicao/.m2/repository/org -o /Users/cnhaicao/.m2/repository-all -t /Users/cnhaicao/.m2/repository-tmp`
 
 -m 指定m2目录
