@@ -40,7 +40,7 @@ public class GenerateProjectSourceCmd extends AbstractTaskCommand<ReverseSourceC
         List<ErrorSourceVO> errorSources = context.getOutput().getErrorSources();
         Map<String, ModuleVO> moduleMap = context.getMiddle().getModuleMap();
         moduleMap.forEach((k, m) -> {
-            log.info("catch source:{},version:{}", m.getArtifactId(), m.getVersion());
+            log.info("generate source:{},version:{}", m.getArtifactId(), m.getVersion());
             try {
                 StringBuilder outputDirBase = new StringBuilder(outputDir);
                 if (ModuleVO.moduleIsSources(m)) {
