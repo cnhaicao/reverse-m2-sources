@@ -33,7 +33,7 @@ public class ReverseApplication implements CommandLineRunner {
     @SuppressWarnings("unchecked")
     public void run(String... args) throws Exception {
         Options options = CliUtil.buildCommandlineOptions(new Options());
-        CommandLine commandLine = CliUtil.parseCmdLine("java -jar reverse-project.jar", args, CliUtil.buildCommandlineOptions(options), new PosixParser());
+        CommandLine commandLine = CliUtil.parseCmdLine("java -jar reverse-project.jar", args, options, new PosixParser());
         if (null == commandLine) {
             System.exit(-1);
         }
