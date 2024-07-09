@@ -54,7 +54,7 @@
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
-                <version>5.3.8</version>
+                <version>5.8.21</version>
             </dependency>
 
             <dependency>
